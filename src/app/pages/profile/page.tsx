@@ -4,8 +4,7 @@ import Image from 'next/image';
 export default async function ProfilePage({ searchParams }:  {
   searchParams: { username?: string };
 }) {
-  console.log(searchParams.username);
-  const username =  searchParams.username || 'defaultuser';
+  const { username } =  await searchParams;
   const ogImageUrl = `http://dynamic-social-image.vercel.com/api/og?username=${username}`; // Replace with your domain
 
   return (
