@@ -4,8 +4,11 @@ import type { NextRequest } from "next/server";
 // This function can be marked `async` if using `await` inside
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname.split("/");
+  const userAgent = request.headers.get("user-agent") || "";
+  console.log({ userAgent });
+  const isBot = /bot|crawler|spider|crawling|Twitterbot/i.test(userAgent);
 
-  if (request.nextUrl.pathname.startsWith("/profile")) {
+  if (request.nextUrl.pathname.startsWith("/profile") && !isBot) {
     return NextResponse.rewrite(
       new URL(`https://testing.com/referral?ref=${pathname.at(-1)}`)
     );
