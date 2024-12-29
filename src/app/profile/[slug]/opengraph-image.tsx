@@ -12,7 +12,7 @@ export const size = {
 export const contentType = "image/png";
 
 // Image generation
-export default async function Image({}: { params: { slug: string } }) {
+export default async function Image({ params }: { params: { slug: string } }) {
   // Font
   //   const interSemiBold = fetch(new URL("./Inter.ttf", import.meta.url)).then(
   //     (res) => res.arrayBuffer()
@@ -23,7 +23,7 @@ export default async function Image({}: { params: { slug: string } }) {
       // ImageResponse JSX element
       <div
         style={{
-          fontSize: 128,
+          fontSize: 100,
           background: "white",
           width: "100%",
           height: "100%",
@@ -32,7 +32,7 @@ export default async function Image({}: { params: { slug: string } }) {
           justifyContent: "center",
         }}
       >
-        About Acme
+        About {params.slug}
       </div>
     ),
     // ImageResponse options
