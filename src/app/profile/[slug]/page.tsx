@@ -1,15 +1,15 @@
+"use client";
+
 // import Head from "next/head";
 // import Image from "next/image";
-import { redirect } from "next/navigation";
+import { redirect, useParams } from "next/navigation";
 
-export default async function Home({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+export default function Home() {
   // const { username } = props;
-  const username = (await params).slug;
-  // console.log(username);
+  const params = useParams();
+  const username = params.slug;
+
+  // console.log(params.slug);
   // const ogImageUrl = `http://dynamic-social-image.vercel.com/api/og?username=${username}`; // Replace with your domain
 
   redirect(`https://testing.com/referral?ref=${username}`);
