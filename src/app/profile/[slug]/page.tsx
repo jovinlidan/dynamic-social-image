@@ -3,6 +3,7 @@
 // import Head from "next/head";
 // import Image from "next/image";
 import { redirect, useParams } from "next/navigation";
+import { useEffect } from "react";
 
 export default function Home() {
   // const { username } = props;
@@ -12,7 +13,9 @@ export default function Home() {
   // console.log(params.slug);
   // const ogImageUrl = `http://dynamic-social-image.vercel.com/api/og?username=${username}`; // Replace with your domain
 
-  redirect(`https://testing.com/referral?ref=${username}`);
+  useEffect(() => {
+    redirect(`https://testing.com/referral?ref=${username}`);
+  }, [username]);
 
   return <div>Profile Page</div>;
 
