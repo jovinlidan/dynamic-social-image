@@ -6,7 +6,7 @@ export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname.split("/");
 
   if (request.nextUrl.pathname.startsWith("/profile")) {
-    return NextResponse.redirect(
+    return NextResponse.rewrite(
       new URL(`https://testing.com/referral?ref=${pathname.at(-1)}`)
     );
   }
