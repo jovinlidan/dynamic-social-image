@@ -6,7 +6,9 @@ export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname.split("/");
   const userAgent = request.headers.get("user-agent") || "";
   console.log({ userAgent });
-  const isBot = /bot|crawler|spider|crawling|Twitterbot/i.test(userAgent);
+  const isBot = /bot|crawler|spider|crawling|Twitterbot|WhatsApp/i.test(
+    userAgent
+  );
 
   if (request.nextUrl.pathname.startsWith("/profile") && !isBot) {
     return NextResponse.rewrite(
