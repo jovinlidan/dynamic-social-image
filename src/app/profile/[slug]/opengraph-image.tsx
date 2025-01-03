@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { readFile } from "node:fs/promises";
+import { readdir, readFile } from "node:fs/promises";
 import { join } from "node:path";
 
 // export const runtime = "edge";
@@ -16,7 +16,18 @@ export const contentType = "image/png";
 // Image generation
 export default async function Image({ params }: { params: { slug: string } }) {
   // Font
-  const logoData = await readFile(join(process.cwd(), "./Poppins-Medium.ttf"));
+  console.log("process.cwd()", process.cwd());
+  const files = await readdir(process.cwd(), { withFileTypes: true });
+  const result = files.map((file) => ({
+    name: file.name,
+    isDirectory: file.isDirectory(),
+    isFile: file.isFile(),
+  }));
+
+  console.log("Files and directories in:", process.cwd());
+  console.table(result);
+
+  const logoData = await readFile(join(process.cwd(), "/Poppins-Medium.ttf"));
   const logoSrc = Uint8Array.from(logoData).buffer;
 
   return new ImageResponse(
