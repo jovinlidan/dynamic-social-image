@@ -17,14 +17,15 @@ export const contentType = "image/png";
 export default async function Image({ params }: { params: { slug: string } }) {
   // Font
   console.log("process.cwd()", process.cwd());
-  const files = await readdir(process.cwd(), { withFileTypes: true });
+  const dir = "/var/task/.next/server";
+  const files = await readdir(dir, { withFileTypes: true });
   const result = files.map((file) => ({
     name: file.name,
     isDirectory: file.isDirectory(),
     isFile: file.isFile(),
   }));
 
-  console.log("Files and directories in:", process.cwd());
+  console.log("Files and directories in:", dir);
   console.table(result);
 
   const logoData = await readFile(join(process.cwd(), "/Poppins-Medium.ttf"));
