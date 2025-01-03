@@ -17,7 +17,7 @@ export const contentType = "image/png";
 export default async function Image({ params }: { params: { slug: string } }) {
   // Font
   console.log("process.cwd()", process.cwd());
-  const dir = "/var/task/.next/server";
+  const dir = "/var/task/.next/server/app";
   const files = await readdir(dir, { withFileTypes: true });
   const result = files.map((file) => ({
     name: file.name,
